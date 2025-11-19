@@ -30,14 +30,14 @@ class Store {
 
 List<Store> items = [
 
-  Store('iPhone 14', 300, 'https://example.com/iphone.png'),
-  Store('Samsung Galaxy S23', 700, 'https://example.com/galaxy.png'),
-  Store('Google Pixel 8', 600, 'https://example.com/pixel.png'),
+  Store('iPhone 14', 300, 'https://example.com/iphone.png', 'Phone'),
+  Store('Samsung Galaxy S23', 700, 'https://example.com/galaxy.png','Phone'),
+  Store('Google Pixel 8', 600, 'https://example.com/pixel.png', 'Phone'),
 
 
-  Store('MacBook Pro', 1999, 'https://example.com/macbook.png'),
-  Store('Dell XPS 13', 1299, 'https://example.com/dell.png'),
-  Store('HP Spectre x360', 1399, 'https://example.com/hp.png'),
+  Store('MacBook Pro', 1999, 'https://example.com/macbook.png','Laptop'),
+  Store('Dell XPS 13', 1299, 'https://example.com/dell.png','Laptop'),
+  Store('HP Spectre x360', 1399, 'https://example.com/hp.png','Laptop'),
 ];
 class ShowSelectedItems extends StatelessWidget {
   const ShowSelectedItems({required this.width, required this.category, Key? key}) : super(key: key);
