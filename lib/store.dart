@@ -38,3 +38,36 @@ List<Store> items = [
   Store('Dell XPS 13', 1299, 'https://example.com/dell.png'),
   Store('HP Spectre x360', 1399, 'https://example.com/hp.png'),
 ];
+class ShowSelectedItems extends StatelessWidget {
+  const ShowSelectedItems({required this.width, required this.category, Key? key}) : super(key: key);
+
+  final double width;
+  final String category;
+
+  @override
+  Widget build(BuildContext context) {
+
+    List<Store> selectedItems = items.where((e) {
+      if (!e.selected) return false;
+      if (category == 'All') return true;
+      return e.category == category;
+    }).toList();
+
+    return ListView.builder(
+      padding: const EdgeInsets.all(10),
+      itemCount: selectedItems.length,
+      itemBuilder: (context, index) {
+        return Column(
+          children: [
+            const SizedBox(height: 10),
+            SizedBox(width: width * 0.28),
+            Text(selectedItems[index].toString(), style: const TextStyle(fontSize: 18)),
+            const SizedBox(height: 10),
+            Image.network(selectedItems[index].image, height: width * 0.3),
+            const SizedBox(height: 10),
+          ],
+        );
+      },
+    );
+  }
+}
