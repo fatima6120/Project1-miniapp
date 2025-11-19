@@ -110,9 +110,78 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
-      body: const Center(
+      body: _showSelected
+          ? ShowSelectedItems(width: screenWidth, category: _selectedCategory):
+      Column(
+          children: [
+          const SizedBox(height: 20),
 
+
+      DropdownButton<String>(
+        value: _selectedCategory,
+        items: ['All', 'Phone', 'Laptop']
+            .map((cat) => DropdownMenuItem(
+          value: cat,
+          child: Text(cat),
+        ))
+            .toList(),
+        onChanged: (value) {
+          if (value != null) updateCategory(value);
+        },
       ),
+
+      const SizedBox(height: 20),
+      Expanded(
+        child: ListView.builder(
+          itemCount: items.length,
+          itemBuilder: (context, index) {
+            final item = items[index];
+            if (_selectedCategory != 'All' &&
+                item.category != _selectedCategory) {
+              return const SizedBox.shrink();
+            }
+
+            return Column(
+              children: [
+                Row(
+                  children: [
+                    SizedBox(width: screenWidth * 0.24),
+                    Checkbox(
+                      value: item.selected,
+                      onChanged: (e) {
+                        setState(() {
+                          item.selected = e ?? false;
+
+                          if (item.selected) {
+                            _sum += item.price;
+                          } else {
+                            _sum -= item.price;
+                          }
+                        });
+                      },
+                    ),
+                    Text(item.toString()),
+                  ],
+                ),
+                Image.network(item.image, height: screenWidth * 0.3),
+              ],
+            );
+          },
+        ),
+      ),
+
+            const SizedBox(height: 10),
+
+            Text(
+              'Total Price: \$${totalPrice.toStringAsFixed(2)}',
+              style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
+          ],
+      ),
+
     );
+
+
+
   }
 }
