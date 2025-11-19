@@ -5,8 +5,9 @@ class Store {
   final double _price;
   bool _selected = false;
   final String _image;
+  final String category;
 
-  Store(this._name, this._price, this._image);
+  Store(this._name, this._price, this._image, this.category);
 
 
   String get name => _name;
