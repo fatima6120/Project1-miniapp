@@ -88,13 +88,16 @@ class _HomeState extends State<Home> {
               onPressed: () {
                 setState(() {
                   _sum = 0;
-                  // Reset your items here
+                  for (var e in items) {
+                    e.selected = false;
+                  }
                   _showSelected = false;
                 });
               },
-              icon: const Icon(Icons.restore),
-            ),
-          ),
+              icon: const Icon(
+                Icons.restore,
+              ),
+            )),
           Tooltip(
             message: ' show cart',
             child: IconButton(
@@ -173,7 +176,7 @@ class _HomeState extends State<Home> {
             const SizedBox(height: 10),
 
             Text(
-              'Total Price: \$${totalPrice.toStringAsFixed(2)}',
+              'Total Price: \$$_sum',
               style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
           ],
