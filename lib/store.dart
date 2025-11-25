@@ -23,7 +23,7 @@ class Store {
     for (int i = 0; i < 3 - _price.toString().length; i++) {
       space += ' ';
     }
-    return 'Price: \$$_price $space$_name';
+    return '$space$_name Price: \$$_price ';
   }
 }
 
